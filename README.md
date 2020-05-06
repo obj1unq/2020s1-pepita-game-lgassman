@@ -20,7 +20,9 @@ Modificar el método imagen en pepita para que se adecue al estado de pepita:
 
 ## Segunda parte
 ### Roque
-Introducir Roque, el entrenador. En esta etapa pepita ya no puede moverse con las flechas, la primer tarea será que al presionar las flechas el que se mueva sea roque.
+Introducir Roque, el entrenador. 
+En esta etapa pepita ya no puede moverse con las flechas, 
+la primer tarea será que al presionar las flechas el que se mueva sea roque.
 
 Roque tendrá las siguientes capacidades:
 - Al encontrar una comida, Roque la levanta y se la guarda. Si ya tenía una suelta la anterior, en una posición al azar del tablero.
