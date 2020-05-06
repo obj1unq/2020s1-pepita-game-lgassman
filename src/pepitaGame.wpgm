@@ -26,9 +26,9 @@ program PepitaGame {
 	keyboard.v().onPressDo { pepita.volaHacia(villaGesell) }
 	keyboard.b().onPressDo { pepita.volaHacia(buenosAires) }
 	
-	game.whenCollideDo(manzana, {jugador => jugador.encontrar(manzana)})
-	game.whenCollideDo(alpiste, {jugador => jugador.encontrar(alpiste)})
-	game.whenCollideDo(pepita, {jugador => jugador.alimentar(pepita)})		
+	game.onCollideDo(manzana, {jugador => jugador.encontrar(manzana)})
+	game.onCollideDo(alpiste, {jugador => jugador.encontrar(alpiste)})
+	game.onCollideDo(pepita, {jugador => jugador.alimentar(pepita)})		
 	
 	game.onTick(5000, "pepitaVuela", { pepita.volaHaciaOtroLado()})
 	game.say(pepita, "hola")

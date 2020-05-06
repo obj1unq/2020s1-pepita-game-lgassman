@@ -28,6 +28,9 @@ object roque {
 			golondrina.come(alimento)
 			self.dejarComida()
 		}	
+		else {
+			game.say(roque, "No tengo comida")
+		}
 	}
 	
 }

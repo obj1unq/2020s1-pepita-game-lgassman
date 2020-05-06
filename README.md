@@ -26,10 +26,11 @@ Roque tendrá las siguientes capacidades:
 - Al encontrar una comida, Roque la levanta y se la guarda. Si ya tenía una suelta la anterior, en una posición al azar del tablero.
 - Al encontrar a pepita, Roque le entrega la comida que tiene y pepita se la come. Luego, hacer aparecer de nuevo la comida en un lugar al azar del tablero.
 
+Además, hacer que cada 5 segundos pepita cambie a un lugar random del tablero
+
 Algunos tips:
 - Los números entienden el mensaje #randomUpTo(n) que devuelve un número random.
 - Los números entienden los mensajes #roundUp() y truncate(n), que permiten obtener un número entero a partir de un número decimal.
 - El objeto game entiende el mensaje #at(x,y) que devuelve una posición.
 
 Más información sobre estos mensajes se puede encontrar en el sitio de wollok o en la documentación dentro del IDE (mediante ctrl+shift+F3).
-
