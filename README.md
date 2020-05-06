@@ -4,17 +4,19 @@
 
 ## Primera parte
 ### Darle de comer a pepita
-- Al presionar la letra m, queremos que pepita se mueva hasta donde está la manzana y se la coma. La manzana debe desaparecer del tablero.
+- Al presionar la letra m, queremos que pepita se mueva hasta donde está la manzana y se la coma.
+ La manzana debe desaparecer del tablero.
 - Al presionar la letra a, el mismo comportamiento pero en este caso con el alpiste.
 
-### Pepita engorda
+### Pepita crece
 Modificar el método imagen en pepita para que se adecue al estado de pepita:
-- Si tiene energia > 100 pepita está gorda, usar la imagen "pepita-gorda-raw"
+- Si tiene energia > 100 pepita está grande, usar la imagen "pepita-grande-raw"
 - En caso contrario podemos mantener la imagen actual.
 
 ### Pepita habla
 - Hacer que pepita no haga nada si le indico que vuele a la ciudad en la que ya está. En cambio usar el mensaje 'say' para que pepita diga "Ya estoy en <nombre de la ciudad>!".
 - Pepita tampoco debe volar si no le alcanza la energia y en cambio usamos el mensaje 'say' para decir "Dame de comer primero!".
+
 
 ## Segunda parte
 ### Roque
