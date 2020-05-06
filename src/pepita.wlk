@@ -42,4 +42,6 @@ object pepita {
 			game.removeVisual(alimento)
 		}
 	} 
+	
+	
 }
