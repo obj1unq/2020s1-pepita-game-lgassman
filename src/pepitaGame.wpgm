@@ -30,6 +30,9 @@ program PepitaGame {
 	game.whenCollideDo(alpiste, {jugador => jugador.encontrar(alpiste)})
 	game.whenCollideDo(pepita, {jugador => jugador.alimentar(pepita)})		
 	
+	game.onTick(5000, "pepitaVuela", { pepita.volaHaciaOtroLado()})
+	game.say(pepita, "hola")
+	 
 //	START
 	game.start()
 }

@@ -1,5 +1,6 @@
 import ciudades.*
 import wollok.game.*
+import randomizer.*
 
 object pepita {
 	var property energia = 100
@@ -42,4 +43,7 @@ object pepita {
 			game.removeVisual(alimento)
 		}
 	} 
+	method volaHaciaOtroLado() {
+		self.move(randomizer.emptyPosition())
+	}
 }
