@@ -1,25 +1,5 @@
-import pepita.*
 import wollok.game.*
-
-object randomizer {
-	
-	method position() {
-		return 	game.at( 
-					(0).randomUpTo(game.width() - 1).truncate(0),
-					(0).randomUpTo(game.height() - 1).truncate(0)
-		) 
-	}
-	
-	method emptyPosition() {
-		const r = self.position()
-		if(game.getObjectsIn(r).isEmpty()) {
-			return r	
-		}
-		else {
-			return self.emptyPosition()
-		}
-	}
-}
+import randomizer.*
 
 object roque {
 	
@@ -28,14 +8,26 @@ object roque {
 	
 	var alimento = null
 	
+
+	method dejarComida() {
+		alimento.position(randomizer.emptyPosition())
+		game.addVisual(alimento)
+		alimento = null
+	}	
 	
 	method encontrar(unaComida) {
 		if(alimento != null) {
-			alimento.position(randomizer.emptyPosition())
-			game.addVisual(alimento)
+			self.dejarComida()
 		}
 		game.removeVisual(unaComida)
 		alimento = unaComida
+	}
+	
+	method alimentar(golondrina) {
+		if(alimento != null) {
+			golondrina.come(alimento)
+			self.dejarComida()
+		}	
 	}
 	
 }

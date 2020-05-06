@@ -28,8 +28,8 @@ program PepitaGame {
 	
 	game.whenCollideDo(manzana, {jugador => jugador.encontrar(manzana)})
 	game.whenCollideDo(alpiste, {jugador => jugador.encontrar(alpiste)})
-
-		
+	game.whenCollideDo(pepita, {jugador => jugador.alimentar(pepita)})		
+	
 //	START
 	game.start()
 }
