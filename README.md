@@ -29,7 +29,8 @@ Roque tendrá las siguientes capacidades:
 
   Si ya tenía una suelta la anterior, en una posición al azar del tablero.
   
-- Al encontrar a pepita, Roque le entrega la comida que tiene y pepita se la come. Luego, hacer aparecer de nuevo la comida en un lugar al azar del tablero.
+- Al encontrar a pepita, Roque le entrega la comida que tiene y pepita se la come. 
+Luego, hacer aparecer de nuevo la comida en un lugar al azar del tablero.
 
 Algunos tips:
 - Los números entienden el mensaje #randomUpTo(n) que devuelve un número random.

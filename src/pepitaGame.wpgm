@@ -28,7 +28,9 @@ program PepitaGame {
 	
 	game.onCollideDo(manzana, {jugador => jugador.encontrar(manzana)})
 	game.onCollideDo(alpiste, {jugador => jugador.encontrar(alpiste)})
-
+	game.onCollideDo(pepita, {jugador =>  jugador.alimentar(pepita) })
+		
+	game.onTick(5000, "pepitaVuela", { pepita.volaAOtroLugar()})
 		
 //	START
 	game.start()

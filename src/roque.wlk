@@ -19,4 +19,20 @@ object roque {
 		game.addVisual(alimento)
 		alimento = null	
 	}
+	
+	method alimentar(golondrina) {
+		if(alimento != null) {
+			golondrina.come(alimento)	
+			self.soltar()
+		}
+		else {
+			game.say(self, "No tengo alimento ahora")
+		}
+	}
+	
+	
+	
+	
+	
+	
 }
