@@ -16,25 +16,39 @@ object pepita {
 		energia = energia + comida.energia()
 	}
 	
+	
 	method volaHacia(unaCiudad) {
 		if (unaCiudad.position() != self.position()) {
 			self.move(unaCiudad.position())
 			ciudad = unaCiudad
-		}
-		else {
-			game.say(pepita, "Ya estoy ahi")
+		} else {
+			game.say(self, "Ya estoy ahi")
 		}
 	}
 	
 	method esGrande() { return energia > 100} 
 
-
 	method energiaParaVolar(distancia) = 15 + 5 * distancia
 
+	method alcanzaLaEnergia(distancia) { 
+		return energia >= self.energiaParaVolar(distancia)
+	}
+	
+	method validarEnergiaParaDistancia(distancia) {
+		if (not self.alcanzaLaEnergia(distancia)) {
+			self.error("Dame de comer primero")
+		}
+	}
+
 	method move(nuevaPosicion) {
-		energia -= self.energiaParaVolar(position.distance(nuevaPosicion))
+		const distancia = position.distance(nuevaPosicion)
+		self.validarEnergiaParaDistancia(distancia)
+		energia -= self.energiaParaVolar(distancia)
 		self.position(nuevaPosicion)
 	}
+	
+	
+	
 		
 	method irAComer(alimento) {
 		if(game.hasVisual(alimento)) {
