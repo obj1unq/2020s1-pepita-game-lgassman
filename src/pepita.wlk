@@ -18,12 +18,12 @@ object pepita {
 	
 	
 	method volaHacia(unaCiudad) {
-		if (unaCiudad.position() != self.position()) {
-			self.move(unaCiudad.position())
-			ciudad = unaCiudad
-		} else {
-			game.say(self, "Ya estoy ahi")
+		// Responsabilidad
+		if (unaCiudad.position() == self.position()) {
+			self.error("Ya estoy ahi") // Lanza una excepción
 		}
+		self.move(unaCiudad.position())
+		ciudad = unaCiudad
 	}
 	
 	method esGrande() { return energia > 100} 
@@ -41,17 +41,15 @@ object pepita {
 	}
 
 	method move(nuevaPosicion) {
-		const distancia = position.distance(nuevaPosicion)
+		const distancia = position.distance(nuevaPosicion)		
 		self.validarEnergiaParaDistancia(distancia)
+		// VALIDAR ANTES DE HACER EL EFECTO
 		energia -= self.energiaParaVolar(distancia)
 		self.position(nuevaPosicion)
 	}
-	
-	
-	
-		
+
 	method irAComer(alimento) {
-		if(game.hasVisual(alimento)) {
+		if(game.hasVisual(alimento)) { //TODO: Lanzar excepcion
 			self.move(alimento.position())	
 			self.come(alimento)
 			game.removeVisual(alimento)
