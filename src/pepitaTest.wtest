@@ -1,0 +1,70 @@
+import pepita.*
+import ciudades.*
+import comidas.*
+import wollok.game.*
+
+describe "Pepita" {
+	
+	fixture {
+		game.clear()
+	}
+
+	test "pepita se mueve y cambia de posicion" {
+		const nuevaPosicion = pepita.position().right(1)
+		pepita.move(nuevaPosicion)
+		assert.equals(nuevaPosicion, pepita.position())
+	}
+
+	test "pepita se mueve y baja energia" {
+		const nuevaPosicion = pepita.position().right(1)
+		pepita.move(nuevaPosicion)
+		assert.equals(80, pepita.energia())
+	}
+
+	test "pepita quere moverse pero no le alcanza la energia" {
+		const nuevaPosicion = pepita.position().right(100)
+		assert.throwsExceptionWithMessage("Dame de comer primero", { pepita.move(nuevaPosicion)})
+		assert.equals(100, pepita.energia())
+	}
+
+	test "pepita vuela hacia otra ciudad" {
+		pepita.volaHacia(villaGesell)
+		assert.equals(villaGesell, pepita.ciudad())
+	}
+
+	test "pepita quiere volar a otra ciudad pero no le alcanza la energia" {
+		pepita.energia(0)
+		assert.throwsExceptionWithMessage("Dame de comer primero", { pepita.volaHacia(villaGesell)})
+		assert.equals(buenosAires, pepita.ciudad())
+	}
+
+	test "pepita ya esta en la ciudad que se le pide que vuelve" {
+		pepita.volaHacia(buenosAires)
+		assert.throwsExceptionWithMessage("Ya estoy ahi", { pepita.volaHacia(buenosAires)})
+	}
+
+// TODO
+//test "pepita va a comer una comida que no está en el juego" {
+//	pepita.irAComer(manzana)
+//}
+	test "pepita va a comer la manzana" {
+		game.addVisual(manzana)
+		pepita.irAComer(manzana)
+		assert.equals(manzana.position(), pepita.position())
+		assert.notThat(game.hasVisual(manzana))
+	}
+
+	test "El juego comienza vacio" {
+		assert.equals(0, game.allVisuals().size())
+	}
+
+	test "Agrego el alpiste" {
+		game.addVisual(alpiste)
+	}
+
+	test "El juego comienza vacio 2" {
+		assert.equals(0, game.allVisuals().size())
+	}
+
+}
+

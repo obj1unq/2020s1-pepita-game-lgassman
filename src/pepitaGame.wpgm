@@ -22,15 +22,16 @@ program PepitaGame {
 
 //	TECLADO
 	keyboard.h().onPressDo { game.say(pepita, "Hola chiques!") }
+/* 	keyboard.space().onPressDo { game.say(pepita, "Estoy en " + pepita.ciudad().nombre() ) }
 
 	keyboard.v().onPressDo { pepita.volaHacia(villaGesell) }
 	keyboard.b().onPressDo { pepita.volaHacia(buenosAires) }
-	
+*/	
 	game.onCollideDo(manzana, {jugador => jugador.encontrar(manzana)})
 	game.onCollideDo(alpiste, {jugador => jugador.encontrar(alpiste)})
 	game.onCollideDo(pepita, {jugador => jugador.alimentar(pepita)})		
 	
-	game.onTick(5000, "pepitaVuela", { pepita.volaHaciaOtroLado()})
+	game.onTick(5000, "pepitaVuela", { pepita.volaAOtroLugar()})
 	game.say(pepita, "hola")
 	 
 //	START

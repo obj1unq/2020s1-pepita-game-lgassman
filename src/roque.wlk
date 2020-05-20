@@ -1,35 +1,32 @@
 import wollok.game.*
 import randomizer.*
-
 object roque {
+	var property position = game.origin()
+ 	var alimento = null	
+ 	
+	method image() { return "jugador.png" }
 	
-	var property position = game.origin();
-	var property image = "jugador.png"
+	method encontrar(_alimento) {
+		if(alimento != null) {
+			self.soltar()
+		}
+		alimento = _alimento
+		game.removeVisual(alimento)	
+	}
 	
-	var alimento = null
-	
-
-	method dejarComida() {
+	method soltar() {
 		alimento.position(randomizer.emptyPosition())
 		game.addVisual(alimento)
-		alimento = null
-	}	
-	
-	method encontrar(unaComida) {
-		if(alimento != null) {
-			self.dejarComida()
-		}
-		game.removeVisual(unaComida)
-		alimento = unaComida
+		alimento = null	
 	}
 	
 	method alimentar(golondrina) {
 		if(alimento != null) {
-			golondrina.come(alimento)
-			self.dejarComida()
-		}	
+			golondrina.come(alimento)	
+			self.soltar()
+		}
 		else {
-			game.say(roque, "No tengo comida")
+			game.say(self, "No tengo alimento ahora")
 		}
 	}
 	

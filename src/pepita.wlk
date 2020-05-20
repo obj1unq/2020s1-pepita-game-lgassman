@@ -12,38 +12,62 @@ object pepita {
 		return if (self.esGrande()) "pepita-grande-raw.png" else "pepita.png"
 	} 
 
+
 	method come(comida) {
-		energia = energia + comida.energia()
+		self.energia(energia + comida.energia())
 	}
 	
+	
 	method volaHacia(unaCiudad) {
-		if (unaCiudad.position() != self.position()) {
-			self.move(unaCiudad.position())
-			ciudad = unaCiudad
+		// Responsabilidad
+		if (unaCiudad.position() == self.position()) {
+			self.error("Ya estoy ahi") // Lanza una excepción
 		}
-		else {
-			game.say(pepita, "Ya estoy ahi")
-		}
+		self.move(unaCiudad.position())
+		ciudad = unaCiudad
 	}
 	
 	method esGrande() { return energia > 100} 
 
-
 	method energiaParaVolar(distancia) = 15 + 5 * distancia
 
+	method alcanzaLaEnergia(distancia) { 
+		return energia >= self.energiaParaVolar(distancia)
+	}
+	
+	method validarEnergiaParaDistancia(distancia) {
+		if (not self.alcanzaLaEnergia(distancia)) {
+			self.error("Dame de comer primero")
+		}
+	}
+
 	method move(nuevaPosicion) {
-		energia -= self.energiaParaVolar(position.distance(nuevaPosicion))
+		const distancia = position.distance(nuevaPosicion)		
+		self.validarEnergiaParaDistancia(distancia)
+		// VALIDAR ANTES DE HACER EL EFECTO
+		self.energia(energia - self.energiaParaVolar(distancia))
 		self.position(nuevaPosicion)
 	}
-		
+
 	method irAComer(alimento) {
-		if(game.hasVisual(alimento)) {
+		if(game.hasVisual(alimento)) { //TODO: Lanzar excepcion
 			self.move(alimento.position())	
 			self.come(alimento)
 			game.removeVisual(alimento)
 		}
 	} 
-	method volaHaciaOtroLado() {
+	
+	method volaAOtroLugar() {
 		self.move(randomizer.emptyPosition())
 	}
+	
+	method decirEnergia() {
+		game.say(self, "Tengo " + energia + " de energia")	
+	}
+	
+	method energia(_energia) {
+		energia = _energia
+		self.decirEnergia()	
+	}
+	
 }
