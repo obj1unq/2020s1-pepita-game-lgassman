@@ -13,24 +13,35 @@ program PepitaGame {
 	game.ground("suelo.png")
 
 //	VISUALES
-	game.addVisual(alpiste)
-	game.addVisual(manzana)
+	//game.addVisual(alpiste)
+	//game.addVisual(manzana)
 	game.addVisual(buenosAires)
 	game.addVisual(villaGesell)
 	game.addVisual( pepita )
 	game.addVisualCharacter(roque)
 
 //	TECLADO
-	keyboard.h().onPressDo { game.say(pepita, "Hola chiques!") }
-
-	keyboard.v().onPressDo { pepita.volaHacia(villaGesell) }
-	keyboard.b().onPressDo { pepita.volaHacia(buenosAires) }
+//	keyboard.h().onPressDo { game.say(pepita, "Hola chiques!") }
+//	keyboard.v().onPressDo { pepita.volaHacia(villaGesell) }
+//	keyboard.b().onPressDo { pepita.volaHacia(buenosAires) }
 	
-	game.onCollideDo(manzana, {jugador => jugador.encontrar(manzana)})
-	game.onCollideDo(alpiste, {jugador => jugador.encontrar(alpiste)})
+	//game.onCollideDo(manzana, {jugador => jugador.encontrar(manzana)})
+	//game.onCollideDo(alpiste, {jugador => jugador.encontrar(alpiste)})
+	
 	game.onCollideDo(pepita, {jugador =>  jugador.alimentar(pepita) })
 		
-	game.onTick(5000, "pepitaVuela", { pepita.volaAOtroLugar()})
+	game.onTick(5000, "pepitaVuela", { 
+		try {
+			pepita.volaAOtroLugar()
+		}
+		catch error {
+			game.clear()
+			game.addVisual(pepita)
+			game.say(pepita, "Me quede sin alimento. puntuación: " + pepita.vecesAlimentadas())
+		}
+	})
+	
+	game.onTick(3000, "nuevoAlimento", { generadorAlimento.action()})
 		
 //	START
 	game.start()

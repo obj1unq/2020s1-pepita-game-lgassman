@@ -7,6 +7,7 @@ object pepita {
 	var property ciudad = buenosAires 
 
 	var property position = game.at(3,3)
+	var property vecesAlimentadas = 0	
 	
 	method image() {
 		return if (self.esGrande()) "pepita-grande-raw.png" else "pepita.png"
@@ -14,6 +15,8 @@ object pepita {
 
 	method come(comida) {
 		energia = energia + comida.energia()
+		vecesAlimentadas = vecesAlimentadas + 1
+		game.say(self, "tengo " + energia + " de energia")
 	}
 	
 	method volaHacia(unaCiudad) {
@@ -32,8 +35,13 @@ object pepita {
 	method energiaParaVolar(distancia) = 15 + 5 * distancia
 
 	method move(nuevaPosicion) {
+		const energiaAConsumir = self.energiaParaVolar(position.distance(nuevaPosicion))
+		if(energiaAConsumir > energia) {
+			self.error("me quede sin energia")
+		}
 		energia -= self.energiaParaVolar(position.distance(nuevaPosicion))
 		self.position(nuevaPosicion)
+		game.say(self, "tengo " + energia + " de energia")
 	}
 		
 	method irAComer(alimento) {
