@@ -40,3 +40,18 @@ Algunos tips:
 - El objeto game entiende el mensaje #at(x,y) que devuelve una posición.
 
 Más información sobre estos mensajes se puede encontrar en el sitio de wollok o en la documentación dentro del IDE (mediante ctrl+shift+F3).
+
+## Tercera parte
+
+Hacer las siguientes modificacines a pepita game:
+
+- ignorar el tema de ciudades
+- Puede haber muchos alpistes y muchas manzanas, pero hasta 5 a la vez en el juego (total).
+- Los alimentos van apareciendo cada 3 segundos, se elije una manzana o un alpiste al azar
+- El alpiste tiene un valor variable entre 1 y 100, si es mas de 50 pone una imagen distinta
+- los alimentos ya no se sueltan: 
+ - si pepita come, el objeto alimento debe desaparecer del juego,
+ - roque puede guardarse todos los alimentos que se encuentre, siempre le da a pepita el que mas energia le da
+- si pepita trata de volar sin energia, entonces se termina el juego, 
+la puntuación es la cantidad de veces que pepita comió. (la dice al final del juego)
+
