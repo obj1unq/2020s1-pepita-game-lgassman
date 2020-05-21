@@ -48,6 +48,7 @@ describe "Pepita" {
 //	pepita.irAComer(manzana)
 //}
 	test "pepita va a comer la manzana" {
+		const manzana = new Manzana()
 		game.addVisual(manzana)
 		pepita.irAComer(manzana)
 		assert.equals(manzana.position(), pepita.position())
@@ -59,7 +60,7 @@ describe "Pepita" {
 	}
 
 	test "Agrego el alpiste" {
-		game.addVisual(alpiste)
+		game.addVisual(new Alpiste())
 	}
 
 	test "El juego comienza vacio 2" {

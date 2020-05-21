@@ -13,25 +13,27 @@ program PepitaGame {
 	game.ground("suelo.png")
 
 //	VISUALES
-	game.addVisual(alpiste)
-	game.addVisual(manzana)
-	game.addVisual(buenosAires)
-	game.addVisual(villaGesell)
 	game.addVisual(pepita)
 	game.addVisualCharacter(roque)
 
 //	TECLADO
 	keyboard.h().onPressDo { game.say(pepita, "Hola chiques!") }
-/* 	keyboard.space().onPressDo { game.say(pepita, "Estoy en " + pepita.ciudad().nombre() ) }
 
-	keyboard.v().onPressDo { pepita.volaHacia(villaGesell) }
-	keyboard.b().onPressDo { pepita.volaHacia(buenosAires) }
-*/	
-	game.onCollideDo(manzana, {jugador => jugador.encontrar(manzana)})
-	game.onCollideDo(alpiste, {jugador => jugador.encontrar(alpiste)})
 	game.onCollideDo(pepita, {jugador => jugador.alimentar(pepita)})		
 	
-	game.onTick(5000, "pepitaVuela", { pepita.volaAOtroLugar()})
+	game.onTick(5000, "pepitaVuela", { 
+		try {
+			pepita.volaAOtroLugar()
+		}
+		catch error {
+			game.clear()
+			game.addVisual(pepita)
+			game.say(pepita, "Me quede sin energia. Puntuacion " + pepita.puntuacion() )
+		}
+	})
+	
+	game.onTick(3000, "nuevoAlimento", { generadorAlimento.accion() })
+
 	game.say(pepita, "hola")
 	 
 //	START

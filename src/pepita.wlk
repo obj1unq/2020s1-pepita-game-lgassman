@@ -5,6 +5,7 @@ import randomizer.*
 object pepita {
 	var property energia = 100
 	var property ciudad = buenosAires 
+	var property puntuacion = 0
 
 	var property position = game.at(3,3)
 	
@@ -15,6 +16,8 @@ object pepita {
 
 	method come(comida) {
 		self.energia(energia + comida.energia())
+		comida.fuisteComido()
+		puntuacion = puntuacion + 1
 	}
 	
 	
@@ -62,6 +65,9 @@ object pepita {
 	}
 	
 	method decirEnergia() {
+		if(not game.hasVisual(self)) {
+			game.addVisual(self)
+		}
 		game.say(self, "Tengo " + energia + " de energia")	
 	}
 	
